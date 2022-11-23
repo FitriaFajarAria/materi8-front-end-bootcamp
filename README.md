@@ -52,14 +52,22 @@ Untuk menjalankan tes, tambahkan ini ke package.json:
                  npm run test
  
  
+ mengimport jest 
+ 
+ 
+                import {render} from '@testing-library/react';
+ 
  ### Menggunakan Test Coverage
  
 Pada sebuah proyek, ada baiknya kita melakukan sebuah testing terhadap semua komponen yang kita buat. Hal ini bertujuan untuk memastikan bahwa setiap komponen berfungsi semestinya. Namun terkadang kita lupa untuk membuat test untuk suatu komponen. Disinilah peran Test Coverage sangat berarti. Test Coverage berfungsi untuk melihat komponen mana saja yang sudah memiliki test dan komponen yang belum memiliki test. Untuk menjalankan test ini kita hanya perlu mengetikan perintah npm test — -coverage pada terminal, dan akan muncul daftar komponen mana saja yang sudah dan belum memiliki test. Berikut contoh hasil dari perintah npm test — -coverage.
 
 ### Fungsi Mock Dengan Menggunakan Jest
 
-Seperti artinya kita akan membuat tiruan/mock dari suatu fungsi dan membuat balikannya secara manual, sehingga tidak peduli apakah fungsi tersebut bekerja, fungsi akan mengembalikan nilai sesuai yang kita definisikan. Kita akan mencoba membuat mock dari fungsi fungsiTambah yang kita buat sebelumnya. 
+Seperti artinya kita akan membuat tiruan/mock dari suatu fungsi dan membuat balikannya secara manual, sehingga tidak peduli apakah fungsi tersebut bekerja, fungsi akan mengembalikan nilai sesuai yang kita definisikan. Kita akan mencoba membuat mock dari fungsi fungsiTambah yang kita buat sebelumnya. Tujuan mocking adalah untuk mengisolasi kode yang diuji dari dependensi eksternal seperti panggilan API. Ini dicapai dengan mengganti dependensi dengan objek terkontrol yang mensimulasikan dependensi tersebut. 
 
 ### Snapshot Testing
 
-Snapshot testing merupakan fitur pada Jest yang memungkinkan kita membandingkan hasil render dari suatu komponen. Hasil render ini akan dibaca dalam bentuk JSON kedalam suatu file tersendiri yang secara otomatis akan terbentuk saat kita menjalankan snapshot testing. 
+Snapshot testing merupakan fitur pada Jest yang memungkinkan kita membandingkan hasil render dari suatu komponen. Hasil render ini akan dibaca dalam bentuk JSON kedalam suatu file tersendiri yang secara otomatis akan terbentuk saat kita menjalankan snapshot testing. Kasus uji snapshot tipikal merender komponen UI, mengambil snapshot, lalu membandingkannya dengan file snapshot referensi yang disimpan. Jika kedua snapshot cocok, tes akan lulus. Jika kedua snapshot tidak cocok, mungkin karena perubahan yang tidak terduga atau karena snapshot referensi perlu diperbarui ke versi baru komponen UI. Untuk menulis pengujian snapshot, library react-test-renderer diperlukan karena library ini memungkinkan merender komponen React ke objek JavaScript.
+
+
+            import renderer from "react-test-renderer";
